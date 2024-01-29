@@ -61,11 +61,14 @@ pipeline {
            steps{
                scripts{
                    def response = httpRequest(
-                       url: "http://$KUBE_MASTER_IP:8081/"
-                       
-                   )
-                   if (response.status != 200){
-                       error("Smoke Test Failed")
+                acceptType: 'APPLICATION_JSON',
+                contentType: 'APPLICATION_JSON',
+                httpMode: 'GET',
+                responseHandle: 'NONE',
+                url: "http://$KUBE_MASTER_IP:8081/"
+            )
+            if (response.status != 200) {
+                error("Smoke Test Failed")
                    }
                }
            } 
