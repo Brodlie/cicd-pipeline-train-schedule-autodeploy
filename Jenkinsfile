@@ -61,10 +61,6 @@ pipeline {
            steps{
                scripts{
                    def response = httpRequest(
-                acceptType: 'APPLICATION_JSON',
-                contentType: 'APPLICATION_JSON',
-                httpMode: 'GET',
-                responseHandle: 'NONE',
                 url: "http://$KUBE_MASTER_IP:8081/"
             )
             if (response.status != 200) {
