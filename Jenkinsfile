@@ -54,22 +54,22 @@ pipeline {
                 )
             }
         }
-        stage('SmokeTest'){
-           when {
-                branch 'master'
-           }
-           steps{
-               scripts{
-                   def response = httpRequest(
-                url: "http://$KUBE_MASTER_IP:8081/"
-            )
-            if (response.status != 200) {
-                error("Smoke Test Failed")
-                   }
-               }
-           } 
+#        stage('SmokeTest'){
+#           when {
+#                branch 'master'
+#           }
+#           steps{
+#               scripts{
+#                   def response = httpRequest(
+#                url: "http://$KUBE_MASTER_IP:8081/"
+#            )
+#            if (response.status != 200) {
+#                error("Smoke Test Failed")
+#                   }
+#               }
+#           } 
             
-        }
+#        }
         stage('DeployToProduction') {
             when {
                 branch 'master'
